@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { collection, query, where, orderBy, limit, getDocs } from 'firebase/firestore';
+import { collection, query, where, limit, getDocs } from 'firebase/firestore';
 import { db } from '../config/firebase';
 import { format } from 'date-fns';
 import Loading from '../components/Loading';
@@ -15,7 +15,6 @@ const Home = () => {
         const q = query(
           collection(db, 'events'),
           where('status', '==', 'active'),
-          orderBy('dateTime'),
           limit(3)
         );
         const querySnapshot = await getDocs(q);
@@ -97,7 +96,7 @@ const Home = () => {
                   </p>
                   <p className="text-gray-600">
                     <span className="font-medium">Price:</span> KES{' '}
-                    {event.price.toLocaleString()}
+                    {event.price ? event.price.toLocaleString() : '0'}
                   </p>
                 </div>
                 <Link

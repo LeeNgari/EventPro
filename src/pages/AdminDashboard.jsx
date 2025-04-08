@@ -127,12 +127,12 @@ const AdminDashboard = () => {
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap">
                     <div className="text-sm text-gray-500">
-                      {event.price.toLocaleString()}
+                      {event.price ? event.price.toLocaleString() : '0'}
                     </div>
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap">
                     <div className="text-sm text-gray-500">
-                      {event.currentBookings}/{event.capacity}
+                      {event.currentBookings || 0}/{event.capacity || 0}
                     </div>
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap">
@@ -143,7 +143,7 @@ const AdminDashboard = () => {
                           : 'bg-red-100 text-red-800'
                       }`}
                     >
-                      {event.status}
+                      {event.status || 'active'}
                     </span>
                   </td>
                 </tr>
@@ -188,11 +188,11 @@ const AdminDashboard = () => {
                     <div className="text-sm text-gray-500">{booking.userId}</div>
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap">
-                    <div className="text-sm text-gray-500">{booking.quantity}</div>
+                    <div className="text-sm text-gray-500">{booking.quantity || 0}</div>
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap">
                     <div className="text-sm text-gray-500">
-                      {booking.totalPrice.toLocaleString()}
+                      {booking.totalPrice ? booking.totalPrice.toLocaleString() : '0'}
                     </div>
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap">
@@ -203,12 +203,12 @@ const AdminDashboard = () => {
                           : 'bg-red-100 text-red-800'
                       }`}
                     >
-                      {booking.status}
+                      {booking.status || 'active'}
                     </span>
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap">
                     <div className="text-sm text-gray-500">
-                      {format(new Date(booking.createdAt), 'PPp')}
+                      {booking.createdAt ? format(new Date(booking.createdAt), 'PPp') : 'N/A'}
                     </div>
                   </td>
                 </tr>
